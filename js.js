@@ -5,6 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // lenis smooth scorll
 
+
+  const lenis = new Lenis({
+    duration:1.2
+  });
+  function raf(time){
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  };
+  requestAnimationFrame(raf);
+  lenis.on("scroll", ScrollTrigger.update)
+  gsap.ticker.add((time)=>{
+    lenis.raf(time*1000)
+  });
+
   let workInfoItems = document.querySelectorAll(".work__photo-item");
   workInfoItems.forEach(function (item, index) {
     item.style.zIndex = workInfoItems.length - index;
